@@ -393,7 +393,7 @@
                 <el-pagination layout="prev, pager, next" 
                 :hide-on-single-page="false"
                 :currentPage="groupMemberPageData.number" 
-                :page-size="groupMemberPageData.size" 
+                :page-size="groupMemberFilter.size" 
                 :page-count="groupMemberPageData.totalPages"
                 @current-change="onGroupMemberCurrentPageChange">
 
@@ -631,8 +631,6 @@ export default {
         fetchGroupMembers(currentPage) {
             if (currentPage) {
                 this.groupMemberFilter.page = currentPage - 1
-            } else {
-                this.groupMemberFilter.page = 0
             }
             listGroupMembers(this.$route.params.groupId, this.groupMemberFilter).then(jsonData => {
                 this.groupMemberPageData.data = jsonData.data.content
